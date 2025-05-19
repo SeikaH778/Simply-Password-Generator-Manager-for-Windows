@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestApp2.MainPage"
+             Title="Password Manager Pro"
+             BackgroundColor="{AppThemeBinding Light=#F5F9FF, Dark=#1A2336}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="10">
+
+           
+            <Frame CornerRadius="15" 
+                   BackgroundColor="#0077b6"
+                   Padding="15"
+                   HorizontalOptions="Fill">
+                <Label Text=" Генератор Паролей" 
+                       TextColor="White"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+            </Frame>
+
+            
+            <Frame CornerRadius="12" 
+                   BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#2A3447}"
+                   Padding="15"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Длина пароля:" 
+                           FontSize="16"
+                           TextColor="{AppThemeBinding Light=#2D3748, Dark=#E2E8F0}"/>
+
+                    <Grid>
+                        <Slider Minimum="6" 
+Maximum="20" 
+MinimumTrackColor="#0077b6"
+MaximumTrackColor="#CBD5E0"
+ThumbColor="#0077b6"
+ValueChanged="Slider_ValueChanged"/>
+                    </Grid>
+                    <Grid>
+                        
+                        <Label x:Name="passwordLenghtLabel" 
+                               Text="6"
+                               FontSize="24"
+                               TextColor="#0077b6"
+                               HorizontalOptions="Center"/>
+
+                        
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            
+            <Button Text=" Сгенерировать Пароль" 
+        Clicked="GeneratePasswordButtonClick"
+        CornerRadius="10"
+        BackgroundColor="#0077b6"
+        TextColor="White"
+        FontSize="16"
+        HeightRequest="50"/>
+
+            
+            <Frame CornerRadius="12" 
+                   BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#2A3447}"
+                   Padding="15"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Ваш пароль:" 
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light=#4A5568, Dark=#CBD5E0}"/>
+
+                    <Editor x:Name="ReadyPass" 
+                           Text="" 
+                           IsReadOnly="True"
+                           BackgroundColor="Transparent"
+                           TextColor="{AppThemeBinding Light=#2D3748, Dark=#FFFFFF}"
+                           FontSize="18"
+                           AutoSize="TextChanges"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            
+            <Frame CornerRadius="12" 
+                   BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#2A3447}"
+                   Padding="15"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Назначение пароля:" 
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light=#4A5568, Dark=#CBD5E0}"/>
+
+                    <Editor x:Name="passReason" 
+                           Text="" 
+                           Placeholder="Например: Email Google"
+                           BackgroundColor="Transparent"
+                           TextColor="{AppThemeBinding Light=#2D3748, Dark=#FFFFFF}"
+                           FontSize="16"
+                           AutoSize="TextChanges"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            
+            <Grid ColumnDefinitions="*,*" 
+                  ColumnSpacing="15">
+                <Button Text="💾 Сохранить" 
+                        Clicked="SavePasswordButtonClick"
+                        CornerRadius="10"
+                        BackgroundColor="#48BB78"
+                        TextColor="White"
+                        HeightRequest="50"/>
+
+                <Button Grid.Column="1"
+                        Text="🧹 Очистить БД" 
+                        Clicked="ClearDBButtonClick"
+                        CornerRadius="10"
+                        BackgroundColor="#F56565"
+                        TextColor="White"
+                        HeightRequest="50"/>
+            </Grid>
+
+            <Frame CornerRadius="12" 
+                   BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#2A3447}"
+                   Padding="15"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Сохранённые пароли:" 
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light=#4A5568, Dark=#CBD5E0}"/>
+
+                    <Picker x:Name="SavedPasswordsPicker" 
+                           Title="Выберите из списка..."
+                           ItemDisplayBinding="{Binding Reason}"
+                           TextColor="{AppThemeBinding Light=#2D3748, Dark=#FFFFFF}"
+                           FontSize="16"
+                           TitleColor="#718096"
+                           SelectedIndexChanged="SavedPasswordsPicker_SelectedIndexChanged"/>
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
